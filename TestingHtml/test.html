@@ -1,8 +1,15 @@
 <html>
 
 <head>
-    <title>Test Html Page</title>
+    <title>MiX AIR Plain Html Test Page</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+
+</head>
+
+<body>
+
+    <p id="result"></p>
+
     <script type="text/javascript">
 
         jQuery(document).ready(function () {
@@ -20,46 +27,50 @@
             //Get mission from UI API
             //Send current gps to ui api for first point
             //Replace content in mixair.mission with mission from UI API
+            var request = $.ajax({
+                async: false,
+                crossDomain: true,
+                url: "https://mixairapi.mixdevelopment.com/Mission/GetRecoveryMissionXML",
+                method: "GET",
+                headers: {
+                    "content-type": "application/x-www-form-urlencoded"
+                },
+                data: {
+                    "lat": currentGroundStationlat,
+                    "lng": currentGroundStationlng
+                },
+            });
 
-            function getMiXAirMissionFromApi() {
-                $.ajax({
-                    async: true,
-                    crossDomain: true,
-                    url: "http://localhost:5122/Mission/GetRecoveryMissionXML",
-                    type: "GET",
-                    headers: {
-                        "content-type": "application/x-www-form-urlencoded"
-                    },
-                    data: {
-                        "lat": currentGroundStationlat,
-                        "lng": currentGroundStationlng
-                    },
-                    cache: false,
-                    success: function (data) {
-                        alert.log(data);
-                        $("#result").text(data);
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert("Status: " + textStatus); 
-                        alert("Error: " + errorThrown);
-                    }
-                }).fail(function (jqXHR, textStatus, error) {
-    // Handle error here
-    alert(jqXHR.responseText);
-    console.log(jqXHR.responseText)
-});;
-            };
+            request.done(function (msg) {
+                console.log("Got mission waypoints from API");
+                console.log(msg);
+                //We now have the new mission from the UI API 
+                //We have to replace the mixair.mission with the new mission
+                //Currently nothing is being saved
 
-        };
+                //$('#loadFileMissionButton').click();
+
+                if (false) 
+                {
+                    $('#saveMissionButton').click();
+                    $('#saveEepromMissionButton').click();
+                }
+                else
+                {
+                    console.log('No connection to Drone, upload mission file manually');
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log("MiX Air Mission Request failed: " + textStatus);
+            });
+
+    
+        }
+
+
 
     </script>
-</head>
-
-<body>
-
-    <p id="result"></p>
-
-
 </body>
 
 </html>
