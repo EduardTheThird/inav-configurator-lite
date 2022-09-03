@@ -7,17 +7,18 @@
 
             <div class="spacer_box settings">
                 <div class="checkbox notifications">
-                    <input id="notificationsOptions" type="checkbox" />
-                    <label for="notificationsOptions"><span data-i18n="options_receive_app_notifications"></span></label>
+                    <input id="notificationsOptions" type="checkbox"/>
+                    <label for="notificationsOptions"><span
+                            data-i18n="options_receive_app_notifications"></span></label>
                 </div>
 
                 <div class="checkbox statistics">
-                    <input id="improveConfigurator" type="checkbox" />
+                    <input id="improveConfigurator" type="checkbox"/>
                     <label for="improveConfigurator"><span data-i18n="options_improve_configurator"></span></label>
                 </div>
 
                 <div class="checkbox show_profile_parameters">
-                    <input id="showProfileParameters" type="checkbox" />
+                    <input id="showProfileParameters" type="checkbox"/>
                     <label for="showProfileParameters"><span data-i18n="options_showProfileParameters"></span></label>
                 </div>
             </div>
@@ -26,26 +27,27 @@
         <div class="options-section gui_box grey">
 
             <div class="spacer_box settings">
-                <div class="select">                    
+                <div class="select">
                     <select id="map-provider-type">
+                        <option value="here">Here Maps</option>
                         <option value="osm">OpenStreetMap</option>
                         <option value="bing">Bing Maps</option>
                         <option value="mapproxy">MapProxy</option>
-                    </select>       
-                    <label for="map-provider-type" data-i18n="mapProvider"></label>             
+                    </select>
+                    <label for="map-provider-type" data-i18n="mapProvider"></label>
                 </div>
 
                 <div class="number">
-                    <input type="password" id="map-api-key" style="border: solid 1px black" />                
-                    <label for="map-api-key" data-i18n="mapApiKey"></label>                    
+                    <input type="password" id="map-api-key" style="border: solid 1px black"/>
+                    <label for="map-api-key" data-i18n="mapApiKey"></label>
                 </div>
 
-                <div class="number">                    
-                    <input type="text" id="proxyurl" style="border: solid 1px black" />
+                <div class="number">
+                    <input type="text" id="proxyurl" style="border: solid 1px black"/>
                     <label for="proxyurl" data-i18n="proxyURL"></label>
                 </div>
-                <div class="number">                    
-                    <input type="text" id="proxylayer" style="border: solid 1px black" />
+                <div class="number">
+                    <input type="text" id="proxylayer" style="border: solid 1px black"/>
                     <label for="proxylayer" data-i18n="proxyLayer"></label>
                 </div>
             </div>
