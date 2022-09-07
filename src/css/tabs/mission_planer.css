@@ -114,19 +114,19 @@
 }
 
 .tab-mission-control .ic_save {
-    background-image: url(../images/icons/cf_icon_MP_save_grey.svg);
+    background-image: url(../images/icons/cf_icon_MP_save_black.svg);
 }
 
 .tab-mission-control .ic_save:hover {
-    background-image: url(../images/icons/cf_icon_MP_save_grey.svg);
+    background-image: url(../images/icons/cf_icon_MP_save_green.svg);
 }
 
 .tab-mission-control .ic_cancel {
-    background-image: url(../images/icons/cf_icon_MP_cancel_grey.svg);
+    background-image: url(../images/icons/cf_icon_MP_cancel_black.svg);
 }
 
 .tab-mission-control .ic_cancel:hover {
-    background-image: url(../images/icons/cf_icon_MP_cancel_grey.svg);
+    background-image: url(../images/icons/cf_icon_MP_cancel_red.svg);
 }
 
 .tab-mission-control .ic_add {
