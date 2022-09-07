@@ -1,5 +1,7 @@
 'use strict';
 
+var signalR = require("@microsoft/signalr");
+
 ////////////////////////////////////
 //
 // global Parameters definition
@@ -1024,6 +1026,42 @@ TABS.mission_control.initialize = function (callback) {
         return vectorLayer;
     }
 
+    function addAssetMarker(lat, lng) {
+        if (curPosGeo) {
+            let gpsPos = ol.proj.fromLonLat([lng, lat]);
+            curPosGeo.setCoordinates(gpsPos);
+        } else {
+            curPosStyle = new ol.style.Style({
+                image: new ol.style.Icon(({
+                    anchor: [0.5, 0.5],
+                    opacity: 1,
+                    scale: 1,
+                    src: '../images/icons/truck_right_blue_moving.png'
+                }))
+            });
+    
+            let currentPositionLayer;
+            curPosGeo = new ol.geom.Point(ol.proj.fromLonLat([lng, lat]));
+    
+            let curPosFeature = new ol.Feature({
+                geometry: curPosGeo
+            });
+    
+            curPosFeature.setStyle(curPosStyle);
+    
+            let vectorSource = new ol.source.Vector({
+                features: [curPosFeature]
+            });
+            currentPositionLayer = new ol.layer.Vector({
+                source: vectorSource
+            });
+
+             map.addLayer(currentPositionLayer);
+        }
+
+        setViewAsset(16, lat, lng);
+    }
+
     function getWaypointIcon(waypoint, isEdit) {
         var dictofPointIcon = {
             1:    'WP',
@@ -1370,6 +1408,12 @@ TABS.mission_control.initialize = function (callback) {
 
     function setView(zoom) {
         var coord = ol.proj.fromLonLat([mission.getWaypoint(0).getLonMap(), mission.getWaypoint(0).getLatMap()]);
+        map.getView().setCenter(coord);
+        map.getView().setZoom(zoom);
+    }
+
+    function setViewAsset(zoom, lat, lng) {
+        var coord = ol.proj.fromLonLat([lng, lat]);
         map.getView().setCenter(coord);
         map.getView().setZoom(zoom);
     }
@@ -2374,8 +2418,59 @@ TABS.mission_control.initialize = function (callback) {
         });
 
 
-        function getMiXAirMissionFromApi()
-        {            
+        // Use this to draw polygon
+
+        // var coordinates = [
+        //     [18.8307273, -33.9777269], [18.8406837, -33.9744883],
+        //     [18.8388383, -33.9820863], [18.8307273, -33.9777269]
+        //   ];
+
+        //drawPolygon(coordinates);
+
+        const connection = new signalR.HubConnectionBuilder()
+        .withUrl("http://localhost:5122/position", {
+            skipNegotiation: true,
+            transport: signalR.HttpTransportType.WebSockets
+            })
+        .withAutomaticReconnect()
+	    .configureLogging(signalR.LogLevel.Error)
+        .build();
+
+        connection.start().then(() => { 
+            GUI.log("SignalR connected.")
+        });
+
+        connection.on("ReceiveMessage", (lat, lng) => {
+            addAssetMarker(lat, lng);
+        });
+
+        var request = $.ajax({
+            async: false,
+            crossDomain: true,
+            url: "http://localhost:5122/Mission/Get",
+            method: "GET",
+            headers: {
+                "content-type": "application/x-www-form-urlencoded"
+            }
+         });
+
+        function drawPolygon(coordinates) {
+            var polygon = new ol.geom.Polygon([coordinates]);
+            polygon.transform('EPSG:4326', 'EPSG:3857');
+
+            var feature = new ol.Feature(polygon);
+            var vectorSource = new ol.source.Vector();
+            vectorSource.addFeature(feature);
+
+            var vectorLayer = new ol.layer.Vector({
+                source: vectorSource
+            });
+
+            map.addLayer(vectorLayer);
+        }
+
+        function getMiXAirMissionFromApi() 
+        {
             var currentGroundStationlat;
             var currentGroundStationlng;
 

@@ -23,6 +23,7 @@
   "author": "iNavFlight",
   "license": "GPL-3.0",
   "dependencies": {
+    "@microsoft/signalr": "^6.0.8",
     "archiver": "^2.0.3",
     "bluebird": "3.4.1",
     "command-exists": "^1.2.8",
