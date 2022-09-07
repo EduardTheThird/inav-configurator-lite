@@ -100,12 +100,12 @@ TABS.mission_control.initialize = function (callback) {
 
 		// set GUI for offline operations
 		if (!CONFIGURATOR.connectionValid) {
-			$('#infoAvailablePoints').hide();
-			$('#infoMissionValid').hide();
-			$('#loadMissionButton').hide();
-			$('#saveMissionButton').hide();
-			$('#loadEepromMissionButton').hide();
-			$('#saveEepromMissionButton').hide();
+			// $('#infoAvailablePoints').hide();
+			// $('#infoMissionValid').hide();
+			// $('#loadMissionButton').hide();
+			// $('#saveMissionButton').hide();
+			// $('#loadEepromMissionButton').hide();
+			// $('#saveEepromMissionButton').hide();
 			isOffline = true;
 		}
 
@@ -1683,8 +1683,11 @@ TABS.mission_control.initialize = function (callback) {
 		let mapLayer;
 
 		if (globalSettings.mapProviderType === 'here') {
+			if (!globalSettings.mapApiKey)
+				getHereMapAPIKeyFromApi();
+
 			mapLayer = new ol.source.XYZ({
-				url: 'https://{1-4}.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?apiKey=9_vMHnMaekruSIvVSpgk9bbQKGNj7Vz7FMbQYrN4-MM&pois=682c0030d043fffefffff3ffffff3a41c8febe00026020000062241201010f2000020029f5ffff3a1cbf00e60000000143',
+				url: 'https://{1-4}.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?apiKey=' + globalSettings.mapApiKey,
 				attributions: ['Map data &copy; <a href="http://developer.here.com">Here</a>']
 			});
 		} else if (globalSettings.mapProviderType === 'bing') {
@@ -1714,7 +1717,7 @@ TABS.mission_control.initialize = function (callback) {
 				new app.PlannerSettingsControl(),
 				new app.PlannerMultiMissionControl(),
 				new app.PlannerElevationControl(),
-				//new app.PlannerSafehomeControl() // TO COMMENT FOR RELEASE : DECOMMENT FOR DEBUG
+				new app.PlannerSafehomeControl() // TO COMMENT FOR RELEASE : DECOMMENT FOR DEBUG
 			]
 		}
 
@@ -2348,6 +2351,22 @@ TABS.mission_control.initialize = function (callback) {
 			$('#flyMiXAirPointMission').removeClass('disabled');
 		});
 
+		function getHereMapAPIKeyFromApi() {
+			const req = $.ajax({
+				async: false,
+				crossDomain: true,
+				url: "http://localhost:5122/Mission/GetHereAPIKey",
+				method: "GET",
+				headers: {
+					"content-type": "application/json"
+				}
+			});
+
+			req.done((key) => {
+				GUI.log(`Received API KEY | ${key}`);
+				globalSettings.mapApiKey = key;
+			});
+		}
 
 		function getMiXAirMissionFromApi() {
 			var currentGroundStationlat;

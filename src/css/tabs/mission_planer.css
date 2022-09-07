@@ -3,10 +3,10 @@
     /*margin-top: 0;*/
     /*margin-bottom: 0;*/
     /*margin-right: 20px;*/
-    background-color: #4CB944;
+    background-color: #f5f5f5;
     border-radius: 3px;
-    border: 1px solid #4CB944;
-    color: #fff;
+    border: 1px solid #ddd;
+    color: #333;
     /*float: right;*/
     display: block;
     cursor: pointer;
@@ -29,43 +29,87 @@
    text-align: center;
 }
 .tab-mission-control .btn a:hover {
-    background-color: #4CB944;
+    background-color: #f5f5f5;
     transition: all ease 0.2s;
 }
 
 .tab-mission-control .ic_save2FC {
-    background-image: url(../images/icons/cf_icon_MP_save2FC_grey.svg);
+    background-image: url(../images/icons/cf_icon_MP_save2FC_black.svg);
+}
+
+.tab-mission-control .ic_save2FC:hover {
+    background-image: url(../images/icons/cf_icon_MP_save2FC_green.svg);
 }
 
 .tab-mission-control .ic_loadFromFC {
-    background-image: url(../images/icons/cf_icon_MP_loadFromFC_grey.svg);
+    background-image: url(../images/icons/cf_icon_MP_loadFromFC_black.svg);
+}
+
+.tab-mission-control .ic_loadFromFC:hover {
+    background-image: url(../images/icons/cf_icon_MP_loadFromFC_green.svg);
 }
 
 .tab-mission-control .ic_save2File {
-    background-image: url(../images/icons/cf_icon_MP_saveFile_grey.svg);
+    background-image: url(../images/icons/cf_icon_MP_saveFile_black.svg);
+}
+
+.tab-mission-control .ic_save2File:hover {
+    background-image: url(../images/icons/cf_icon_MP_saveFile_green.svg);
 }
 
 .tab-mission-control .ic_loadFromFile {
-    background-image: url(../images/icons/cf_icon_MP_loadFile_grey.svg);
+    background-image: url(../images/icons/cf_icon_MP_loadFile_black.svg);
+}
+
+.tab-mission-control .ic_loadFromFile:hover {
+    background-image: url(../images/icons/cf_icon_MP_loadFile_green.svg);
+}
+
+.tab-mission-control .ic_loadFromFile {
+    background-image: url(../images/icons/cf_icon_MP_loadFile_black.svg);
+}
+
+.tab-mission-control .ic_loadFromFile:hover {
+    background-image: url(../images/icons/cf_icon_MP_loadFile_green.svg);
 }
 
 .tab-mission-control .ic_mixairrecoverymission {
-    background-image: url(../images/icons/cf_icon_mixairmission.svg);
+    background-image: url(../images/icons/cf_icon_mixairmission_black.svg);
+}
+
+.tab-mission-control .ic_mixairrecoverymission:hover {
+    background-image: url(../images/icons/cf_icon_mixairmission_green.svg);
 }
 
 .tab-mission-control .ic_save2Eprom {
-    background-image: url(../images/icons/cf_icon_MP_save2Eprom_grey.svg);
+    background-image: url(../images/icons/cf_icon_MP_save2Eprom_black.svg);
+}
+
+.tab-mission-control .ic_save2Eprom:hover {
+    background-image: url(../images/icons/cf_icon_MP_save2Eprom_green.svg);
 }
 
 .tab-mission-control .ic_loadFromEprom {
-    background-image: url(../images/icons/cf_icon_MP_loadFromEprom_grey.svg);
+    background-image: url(../images/icons/cf_icon_MP_loadFromEprom_black.svg);
+}
+
+.tab-mission-control .ic_loadFromEprom:hover {
+    background-image: url(../images/icons/cf_icon_MP_loadFromEprom_green.svg);
 }
 
 .tab-mission-control .ic_removeAll {
-    background-image: url(../images/icons/cf_icon_MP_removeAll_grey.svg);
+    background-image: url(../images/icons/cf_icon_MP_removeAll_black.svg);
+}
+
+.tab-mission-control .ic_removeAll:hover {
+    background-image: url(../images/icons/cf_icon_MP_removeAll_red.svg);
 }
 
 .tab-mission-control .ic_openMultimission {
+    background-image: url(../images/icons/cf_icon_multimission_white.svg);
+}
+
+.tab-mission-control .ic_openMultimission:hover {
     background-image: url(../images/icons/cf_icon_multimission_white.svg);
 }
 
@@ -73,7 +117,15 @@
     background-image: url(../images/icons/cf_icon_MP_save_grey.svg);
 }
 
+.tab-mission-control .ic_save:hover {
+    background-image: url(../images/icons/cf_icon_MP_save_grey.svg);
+}
+
 .tab-mission-control .ic_cancel {
+    background-image: url(../images/icons/cf_icon_MP_cancel_grey.svg);
+}
+
+.tab-mission-control .ic_cancel:hover {
     background-image: url(../images/icons/cf_icon_MP_cancel_grey.svg);
 }
 
@@ -82,11 +134,19 @@
 }
 
 .tab-mission-control .ic_show {
-    background-image: url(../images/icons/cf_icon_MP_show_grey.svg);
+    background-image: url(../images/icons/cf_icon_MP_show_black.svg);
+}
+
+.tab-mission-control .ic_show:hover {
+    background-image: url(../images/icons/cf_icon_MP_show_green.svg);
 }
 
 .tab-mission-control .ic_hide {
-    background-image: url(../images/icons/cf_icon_MP_hide_grey.svg);
+    background-image: url(../images/icons/cf_icon_MP_hide_black.svg);
+}
+
+.tab-mission-control .ic_hide:hover {
+    background-image: url(../images/icons/cf_icon_MP_hide_green.svg);
 }
 
 .tab-mission-control .ic_play {
@@ -420,10 +480,10 @@
     /*margin-top: 0;*/
     /*margin-bottom: 0;*/
     /*margin-right: 20px;*/
-    background-color: #4CB944;
+    background-color: #f5f5f5;
     border-radius: 3px;
-    border: 1px solid #4CB944;
-    color: #fff;
+    border: 1px solid #ddd;
+    color: #333;
     /*float: right;*/
     display: block;
     cursor: pointer;
@@ -437,7 +497,7 @@
 }
 
 .tab-mission-control .btnMenu a:hover {
-    background-color: #4CB944;
+    background-color: #f5f5f5;
     transition: all ease 0.2s;
 }
 
